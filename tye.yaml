@@ -1,0 +1,50 @@
+# tye application configuration file
+# read all about it at https://github.com/dotnet/tye
+#
+# when you've given us a try, we'd love to know what you think:
+#    https://aka.ms/AA7q20u
+#
+name: microsoft.azure.springcloud.samples
+
+extensions:
+- name: zipkin
+
+services:
+# - name: zipkin
+#   image: openzipkin/zipkin
+#   bindings:
+#     - port: 9411
+#       protocol: http
+
+- name: config-server
+  image: steeltoeoss/config-server
+  bindings:
+    - port: 8888
+      containerPort: 8888
+      protocol: http
+  args: --publish --spring.profiles.active=native --spring.cloud.config.server.git.uri=https://github.com/Azure-Samples/Azure-Spring-Cloud-Samples/tree/steeltoe/steeltoe-sample/config
+
+- name: eureka
+  image: steeltoeoss/eurekaserver:1.4.4
+  bindings:
+    - port: 8761
+      containerPort: 8761
+      protocol: http
+    
+- name: planetweatherprovider
+  project: src/planet-weather-provider/Microsoft.Azure.SpringCloud.Sample.PlanetWeatherProvider.csproj
+  bindings:
+  - port: 56339
+    protocol: http
+
+- name: solarsystemweather
+  project: src/solar-system-weather/Microsoft.Azure.SpringCloud.Sample.SolarSystemWeather.csproj
+  bindings:
+  - protocol: http
+    port: 56351
+
+- name: weatherapp
+  project: src/weather-app/Microsoft.Azure.SpringCloud.Sample.WeatherApp.csproj
+  bindings:
+  - protocol: http
+    port: 38979
