@@ -24,7 +24,7 @@ services:
       protocol: http
   env: 
     - name: SPRING_CLOUD_CONFIG_SERVER_GIT_URI
-      value: https://github.com/ddieruf/steeltoe-sample
+      value: https://github.com/spboyer/steeltoe-sample
     - name: SPRING_CLOUD_CONFIG_SERVER_GIT_SEARCHPATHS
       value: config
 
