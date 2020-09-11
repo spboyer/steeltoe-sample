@@ -10,11 +10,11 @@ extensions:
 - name: zipkin
 
 services:
-# - name: zipkin
-#   image: openzipkin/zipkin
-#   bindings:
-#     - port: 9411
-#       protocol: http
+- name: zipkin
+  image: openzipkin/zipkin
+  bindings:
+  - port: 9411
+    protocol: tcp
 
 - name: config-server
   image: steeltoeoss/config-server:2.0.1 #the latest version has a bug, so we need to be specific
@@ -24,7 +24,7 @@ services:
       protocol: http
   env: 
     - name: SPRING_CLOUD_CONFIG_SERVER_GIT_URI
-      value: https://github.com/spboyer/steeltoe-sample
+      value: https://github.com/ddieruf/steeltoe-sample
     - name: SPRING_CLOUD_CONFIG_SERVER_GIT_SEARCHPATHS
       value: config
 
@@ -41,14 +41,14 @@ services:
   - port: 56339
     protocol: http
 
-#- name: solarsystemweather
-#  project: src/solar-system-weather/Microsoft.Azure.SpringCloud.Sample.SolarSystemWeather.csproj
-#  bindings:
-#  - protocol: http
-#    port: 56351
+- name: solarsystemweather
+  project: src/solar-system-weather/Microsoft.Azure.SpringCloud.Sample.SolarSystemWeather.csproj
+  bindings:
+  - protocol: http
+    port: 56351
 
-#- name: weatherapp
-#  project: src/weather-app/Microsoft.Azure.SpringCloud.Sample.WeatherApp.csproj
-#  bindings:
-#  - protocol: http
-#    port: 38979
+- name: weatherapp
+  project: src/weather-app/Microsoft.Azure.SpringCloud.Sample.WeatherApp.csproj
+  bindings:
+  - protocol: http
+    port: 38979

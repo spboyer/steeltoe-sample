@@ -18,6 +18,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{1CB62E0D-2D83-4155-B8C6-8E4B178EF951}"
 	ProjectSection(SolutionItems) = preProject
 		config\PlanetWeatherProvider.yml = config\PlanetWeatherProvider.yml
+		README.md = README.md
 		config\SolarSystemWeather.yml = config\SolarSystemWeather.yml
 	EndProjectSection
 EndProject
