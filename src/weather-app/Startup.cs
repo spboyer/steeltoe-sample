@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using Steeltoe.Management.Tracing;
 using Steeltoe.Common.Http.Discovery;
 using Steeltoe.Discovery.Client;
 
@@ -23,6 +24,8 @@ namespace Microsoft.Azure.SpringCloud.Sample.WeatherApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+      
+          services.AddDistributedTracing(Configuration, builder => builder.UseZipkinWithTraceOptions(services));
             
           services.AddHttpClient("solarsystemweather", c =>
             {
