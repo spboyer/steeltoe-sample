@@ -10,25 +10,23 @@ extensions:
 - name: zipkin
 
 services:
-# - name: zipkin
-#   image: openzipkin/zipkin
-#   bindings:
-#     - port: 9411
-#       protocol: http
+- name: zipkin
+  image: openzipkin/zipkin
+  bindings:
+  - port: 9411
+    protocol: tcp
 
 - name: config-server
-  image: hyness/spring-cloud-config-server
+  image: steeltoeoss/config-server:2.0.1 #the latest version has a bug, so we need to be specific
   bindings:
     - port: 8888
       containerPort: 8888
       protocol: http
   env: 
     - name: SPRING_CLOUD_CONFIG_SERVER_GIT_URI
-      value: https://github.com/spboyer/steeltoe-sample
+      value: https://github.com/ddieruf/steeltoe-sample
     - name: SPRING_CLOUD_CONFIG_SERVER_GIT_SEARCHPATHS
       value: config
-    - name: SPRING_CLOUD_CONFIG_SERVER_GIT_CLONE-ON-START
-      value: true
 
 - name: eureka
   image: steeltoeoss/eurekaserver:1.4.4

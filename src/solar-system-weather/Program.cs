@@ -1,10 +1,9 @@
 using System;
 
 using Microsoft.AspNetCore.Hosting;
-//using Microsoft.Azure.SpringCloud.Client;
+using Microsoft.Azure.SpringCloud.Client;
 using Microsoft.Extensions.Hosting;
 using Steeltoe.Discovery.Client;
-using Steeltoe.Extensions.Configuration.ConfigServer;
 using Steeltoe.Management.Endpoint;
 
 namespace Microsoft.Azure.SpringCloud.Sample.SolarSystemWeather
@@ -21,7 +20,6 @@ namespace Microsoft.Azure.SpringCloud.Sample.SolarSystemWeather
               webBuilder.UseStartup<Startup>();
             })
             .AddHealthActuator()
-            //.AddConfigServer()
             .AddDiscoveryClient()
             //                .UseAzureSpringCloudService()
             ;
